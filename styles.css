@@ -1220,7 +1220,7 @@ section {
 
 /* ── Footer ── */
 footer {
-  background: var(--black);
+  background: black;
   padding: 60px 5%;
   color: rgba(255, 255, 255, 0.4);
 }
@@ -1389,4 +1389,222 @@ body::after {
   to {
     transform: translateX(-50%);
   }
+}
+
+/* ══════════════════════════════════════════
+   DARK MODE
+══════════════════════════════════════════ */
+body.dark {
+  --white: #0d1117;
+  --black: #f0f6fc;
+  --gray-50: #161b22;
+  --gray-100: #21262d;
+  --gray-200: #30363d;
+  --gray-400: #8b949e;
+  --gray-600: #c9d1d9;
+  --gray-800: #e6edf3;
+  --surface: #161b22;
+  --border: rgba(139, 148, 158, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-xl: 0 40px 100px rgba(0,0,0,0.5);
+  background: #0d1117;
+  color: #f0f6fc;
+}
+
+body.dark nav {
+  background: rgba(13, 17, 23, 0.92);
+  border-bottom-color: rgba(139,148,158,0.15);
+}
+
+body.dark #hero {
+  background: #0d1117;
+}
+
+body.dark .floating-card,
+body.dark .float-el,
+body.dark .about-card-main,
+body.dark .service-card,
+body.dark .project-card,
+body.dark .project-body,
+body.dark .skill-chip,
+body.dark .step-num,
+body.dark .contact-link-item {
+  background: #161b22;
+  border-color: rgba(139,148,158,0.15);
+}
+
+body.dark .btn-secondary {
+  background: #161b22;
+  color: var(--navy-light);
+  border-color: rgba(139,148,158,0.2);
+}
+body.dark .btn-secondary:hover { background: #21262d; }
+
+body.dark #about { background: #0d1117; }
+body.dark #services { background: #161b22; }
+body.dark #projects { background: #0d1117; }
+body.dark #skills { background: #161b22; }
+body.dark #process { background: #0d1117; }
+body.dark #contact { background: #161b22; }
+
+body.dark .about-card-header { background: var(--navy-dark); }
+
+body.dark .form-input,
+body.dark .form-textarea {
+  background: #0d1117;
+  border-color: rgba(139,148,158,0.2);
+  color: #f0f6fc;
+}
+body.dark .form-input:focus,
+body.dark .form-textarea:focus {
+  background: #161b22;
+  border-color: var(--navy-light);
+}
+body.dark .form-input::placeholder,
+body.dark .form-textarea::placeholder { color: #484f58; }
+
+body.dark .contact-link-item { background: #0d1117; }
+body.dark .contact-link-item:hover { background: #161b22; }
+body.dark .contact-link-val { color: #f0f6fc; }
+
+body.dark .stag {
+  background: rgba(42,68,107,0.25);
+  color: #8ab4f8;
+}
+body.dark .project-name,
+body.dark .service-title,
+body.dark .step-title,
+body.dark .card-name { color: #f0f6fc; }
+
+body.dark .skill-chip { color: #c9d1d9; }
+body.dark .skill-chip:hover { background: rgba(42,68,107,0.2); color: #8ab4f8; }
+body.dark .info-val { color: #e6edf3; }
+
+body.dark .marquee-wrap {
+  border-color: rgba(139,148,158,0.15);
+}
+
+body.dark .hero-stats { border-top-color: rgba(139,148,158,0.15); }
+body.dark .card-divider { background: rgba(139,148,158,0.15); }
+body.dark .service-price { border-top-color: rgba(139,148,158,0.15); }
+body.dark .project-links { border-top-color: rgba(139,148,158,0.15); }
+body.dark .about-info-row { border-bottom-color: rgba(139,148,158,0.15); }
+body.dark .skill-group-title::after { background: rgba(139,148,158,0.15); }
+
+/* Dark mode toggle button */
+#theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--gray-50);
+  color: var(--gray-600);
+  display: flex; align-items: center; justify-content: center;
+  cursor: none;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+#theme-toggle:hover {
+  background: rgba(42,68,107,0.08);
+  border-color: rgba(42,68,107,0.3);
+  color: var(--navy);
+}
+body.dark #theme-toggle {
+  background: #21262d;
+  border-color: rgba(139,148,158,0.2);
+  color: #c9d1d9;
+}
+body.dark #theme-toggle:hover {
+  background: rgba(42,68,107,0.25);
+  color: #8ab4f8;
+}
+
+/* ══════════════════════════════════════════
+   WHATSAPP FLOATING BUTTON
+══════════════════════════════════════════ */
+#wa-float {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 2000;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+}
+
+.wa-bubble {
+  background: #25D366;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.15);
+  cursor: none;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration: none;
+  position: relative;
+}
+.wa-bubble:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.5), 0 4px 12px rgba(0,0,0,0.2);
+}
+.wa-bubble svg { width: 28px; height: 28px; }
+
+.wa-pulse {
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  background: rgba(37,211,102,0.3);
+  animation: wa-ping 2s ease-out infinite;
+  z-index: -1;
+}
+@keyframes wa-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.wa-tooltip {
+  background: #1a1a1a;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+body.dark .wa-tooltip { background: #f0f6fc; color: #0d1117; }
+
+#wa-float:hover .wa-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════════════
+   GET IN TOUCH — WhatsApp contact form
+══════════════════════════════════════════ */
+.wa-form-note {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: var(--gray-400);
+  margin-bottom: 16px; font-weight: 500;
+}
+.wa-form-note svg { color: #25D366; flex-shrink: 0; }
+
+.form-submit-wa {
+  width: 100%; padding: 14px;
+  background: #25D366;
+  color: white;
+  border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  cursor: none; transition: all 0.25s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 8px;
+}
+.form-submit-wa:hover {
+  background: #1eb855;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.4);
 }

@@ -119,3 +119,80 @@ function handleSubmit(btn) {
     setTimeout(() => { btn.textContent = orig; btn.disabled = false; btn.style.background = ''; }, 3000);
   }, 1200);
 }
+
+// ── Dark / Light Mode ──
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+  // Swap logo
+  const logo = document.getElementById('nav-logo-img');
+  if (logo) logo.src = isDark ? './images/dark.png' : './images/light.png';
+
+  // Swap icons
+  document.getElementById('icon-sun').style.display  = isDark ? 'block' : 'none';
+  document.getElementById('icon-moon').style.display = isDark ? 'none'  : 'block';
+}
+
+// Restore saved theme on load
+(function() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.body.classList.add('dark');
+    const logo = document.getElementById('nav-logo-img');
+    if (logo) logo.src = './images/dark.png';
+    const sun  = document.getElementById('icon-sun');
+    const moon = document.getElementById('icon-moon');
+    if (sun)  sun.style.display  = 'block';
+    if (moon) moon.style.display = 'none';
+  }
+})();
+
+// ── WhatsApp "Get in Touch" form ──
+function sendViaWhatsApp() {
+  const name    = (document.getElementById('f-name')?.value    || '').trim();
+  const contact = (document.getElementById('f-contact')?.value || '').trim();
+  const subject = (document.getElementById('f-subject')?.value || '').trim();
+  const message = (document.getElementById('f-message')?.value || '').trim();
+
+  if (!name || !message) {
+    // Shake the empty fields
+    ['f-name','f-message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && !el.value.trim()) {
+        el.style.borderColor = '#ef4444';
+        el.style.animation = 'shake 0.4s';
+        setTimeout(() => { el.style.borderColor = ''; el.style.animation = ''; }, 1200);
+      }
+    });
+    return;
+  }
+
+  const text = [
+    `👋 Hi Afrid! I came across your portfolio (AfridDevX).`,
+    ``,
+    `*Name:* ${name}`,
+    contact ? `*Contact:* ${contact}` : '',
+    subject ? `*Subject:* ${subject}` : '',
+    ``,
+    `*Message:*`,
+    message,
+  ].filter(l => l !== undefined && !(l === '' && !contact && !subject)).join('\n');
+
+  const encoded = encodeURIComponent(text);
+  window.open(`https://wa.me/919845432516?text=${encoded}`, '_blank');
+}
+
+// Shake animation for validation
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+  }
+`;
+document.head.appendChild(shakeStyle);
